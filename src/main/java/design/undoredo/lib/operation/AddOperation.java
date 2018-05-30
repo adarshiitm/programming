@@ -6,30 +6,22 @@ import design.undoredo.lib.TextAction;
  * Created by adarsh.sharma on 14/03/15.
  */
 public class AddOperation implements Operation {
-    private int position;
-    private String textToAdd;
+    private AddOperationData operationData;
 
     public AddOperation(int position, String textToAdd) {
         if (textToAdd == null || position < 0) {
             throw new RuntimeException("invalid values to create undoRedo.operation");
         }
-        this.position = position;
-        this.textToAdd = textToAdd;
+        this.operationData = new AddOperationData(position, textToAdd);
     }
 
     @Override
-    public void perform(TextAction textAction, String text) {
-        if (text == null || text.length() < position) {
-            throw new RuntimeException("incorrect position");
-        }
-        textAction.addText(position, textToAdd);
+    public void perform(TextAction textAction) {
+        textAction.addText(operationData.getPosition(), operationData.getText());
     }
 
     @Override
-    public void undo(TextAction textAction, String text) {
-        if (text == null || text.length() < (position + textToAdd.length())) {
-            throw new RuntimeException("incorrect position");
-        }
-        textAction.removeText(position, textToAdd.length());
+    public void undo(TextAction textAction) {
+        textAction.removeText(operationData.getPosition(), operationData.getText().length());
     }
 }

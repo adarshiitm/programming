@@ -5,6 +5,7 @@ import design.undoredo.lib.TextAction;
 import design.undoredo.lib.UndoRedo;
 import design.undoredo.lib.operation.AddOperation;
 import design.undoredo.lib.operation.DeleteOperation;
+import design.undoredo.lib.operation.FindAndReplaceOperation;
 import design.undoredo.lib.operation.Operation;
 
 /**
@@ -23,9 +24,10 @@ public class TextEditor implements TextAction {
         TextEditor textEditor = new TextEditor();
 
         textEditor.addText(0, "abcde", true);
-        textEditor.addText(2, "fghijk", true);
+        textEditor.addText(2, "JKhijk", true);
         textEditor.addText(10, "lmno", true);
         textEditor.removeText(4, 2, true);
+        textEditor.replaceFirst("jk", "JK", true);
 
         textEditor.undo();
         textEditor.redo();
@@ -39,11 +41,11 @@ public class TextEditor implements TextAction {
     }
 
     public void undo() {
-        undoRedo.undo(text);
+        undoRedo.undo();
     }
 
     public void redo() {
-        undoRedo.redo(text);
+        undoRedo.redo();
     }
 
     public void addText(int position, String textToAdd, boolean callUndoRedo) {
@@ -64,6 +66,15 @@ public class TextEditor implements TextAction {
         System.out.println("text: " + text);
     }
 
+    public void replaceFirst(String originalText, String newText, boolean callUndoRedo) {
+        if (callUndoRedo) {
+            Operation operation = new FindAndReplaceOperation(text.indexOf(originalText), originalText, newText);
+            undoRedo.addOperation(operation);
+        }
+        text = text.replaceFirst(originalText, newText);
+        System.out.println("text: " + text);
+    }
+
 
     @Override
     public void addText(int position, String textToAdd) {
@@ -74,4 +85,5 @@ public class TextEditor implements TextAction {
     public void removeText(int position, int length) {
         removeText(position, length, false);
     }
+
 }

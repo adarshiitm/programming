@@ -26,7 +26,7 @@ public class UndoRedo {
         undoStack.push(operation);
     }
 
-    public void undo(String text) {
+    public void undo() {
         if (undoStack.empty()) {
             System.out.println("No Operation to undo");
             return;
@@ -34,10 +34,10 @@ public class UndoRedo {
 
         Operation operation = undoStack.pop();
         redoStack.push(operation);
-        operation.undo(textAction, text);
+        operation.undo(textAction);
     }
 
-    public void redo(String text) {
+    public void redo() {
         if (redoStack.empty()) {
             System.out.println("No Operation to redo");
             return;
@@ -45,6 +45,6 @@ public class UndoRedo {
 
         Operation operation = redoStack.pop();
         undoStack.push(operation);
-        operation.perform(textAction, text);
+        operation.perform(textAction);
     }
 }
