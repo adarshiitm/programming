@@ -1,4 +1,4 @@
-package codejam2018.oneA.EdgyBaking;
+package codejam2018.jam2018.oneA.EdgyBaking;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package codejam2018.oneC.oneCThree;
+package codejam2018.jam2018.oneC.oneCThree;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

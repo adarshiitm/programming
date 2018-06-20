@@ -1,4 +1,4 @@
-package codejam2018.qualification.gopher;
+package codejam2018.jam2018.qualification.gopher;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

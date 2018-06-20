@@ -1,4 +1,4 @@
-package codejam2018.qualification.cubicUFO;
+package codejam2018.jam2018.qualification.cubicUFO;
 
 /**
  * Created by adarsh.sharma on 07/04/18.

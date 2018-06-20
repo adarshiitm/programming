@@ -1,4 +1,4 @@
-package codejam2018.qualification.savingtheuniverse;
+package codejam2018.jam2018.qualification.savingtheuniverse;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

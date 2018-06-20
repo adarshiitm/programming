@@ -1,4 +1,4 @@
-package codejam2018.oneA.waffleChoppers;
+package codejam2018.jam2018.oneA.waffleChoppers;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -1,13 +1,12 @@
-package codejam2018;
+package codejam2018.jam2018.qualification.cubicUFO;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
 /**
- * Created by adarsh.sharma on 14/04/18.
+ * Created by adarsh.sharma on 08/04/18.
  */
-
 public class Solution {
     public static void main(String args[]) {
         Scanner input = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
@@ -46,4 +45,3 @@ public class Solution {
         System.out.println("0, 0, " + 0.5);
     }
 }
-

@@ -1,4 +1,4 @@
-package codejam2018.oneC.awholenewworld;
+package codejam2018.jam2018.oneC.awholenewworld;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
