@@ -25,14 +25,10 @@ class ExamRoom855 {
 
         if (remove.e && remove.s) {
             int diff = remove.end - remove.start;
-            if (diff == 1) {
-                return remove.end;
-            } else {
-                int cur = diff / 2 + remove.start;
-                pq.add(new PQ(remove.start, cur, true, true));
-                pq.add(new PQ(cur, remove.end, true, true));
-                return cur;
-            }
+            int cur = diff / 2 + remove.start;
+            pq.add(new PQ(remove.start, cur, true, true));
+            pq.add(new PQ(cur, remove.end, true, true));
+            return cur;
         } else if (remove.s) {
             remove.e = true;
             pq.add(remove);
