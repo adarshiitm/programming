@@ -21,7 +21,7 @@ class ExamRoom855 {
             return 0;
         }
 
-        PQ remove = pq.remove();;
+        PQ remove = pq.remove();
 
         if (remove.e && remove.s) {
             int diff = remove.end - remove.start;
