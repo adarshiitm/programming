@@ -67,10 +67,6 @@ public class LCARecursive {
             return true;
         }
 
-        boolean left = checkIfExists(r.left, v);
-        if (left) {
-            return true;
-        }
-        return checkIfExists(r.right, v);
+        return checkIfExists(r.left, v) || checkIfExists(r.right, v);
     }
 }
