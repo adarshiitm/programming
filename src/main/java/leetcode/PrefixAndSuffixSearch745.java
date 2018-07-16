@@ -126,6 +126,6 @@ public class PrefixAndSuffixSearch745 {
         String[] words = {"apple", "applicable", "temple"};
         PrefixAndSuffixSearch745 wordFilter = new PrefixAndSuffixSearch745(words);
 //        System.out.println(wordFilter.f("", "op"));
-        System.out.println(wordFilter.f("app", "ple"));
+        System.out.println(wordFilter.f("te", "le"));
     }
 }
