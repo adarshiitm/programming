@@ -58,6 +58,7 @@ public class SegmentTree {
 //        System.out.println(segmentTree.getMin(1, 7));
 
         int[] input = {3, 5, 1, 7, 4, 6};
+//        int[] input = {2, 5, 6, 9, 8};
         SegmentTree segmentTree = new SegmentTree(input);
         System.out.println(segmentTree.getMin(0, 4));
         segmentTree.update(2, 4);
