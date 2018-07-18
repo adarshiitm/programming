@@ -51,17 +51,17 @@ public class SegmentTree {
     }
 
     public static void main(String[] args) {
-//        int[] input = {1, 5, 3, 7, 3, 6, 5, 7};
-//        SegmentTree segmentTree = new SegmentTree(input);
-//        System.out.println(segmentTree.getMin(3, 8));
-//        segmentTree.update(5, 2);
-//        System.out.println(segmentTree.getMin(1, 7));
-
-        int[] input = {3, 5, 1, 7, 4, 6};
-//        int[] input = {2, 5, 6, 9, 8};
+        int[] input = {1, 5, 3, 7, 3, 6, 5, 7};
         SegmentTree segmentTree = new SegmentTree(input);
-        System.out.println(segmentTree.getMin(0, 4));
-        segmentTree.update(2, 4);
-        System.out.println(segmentTree.getMin(0, 5));
+        System.out.println(segmentTree.getMin(3, 8));
+        segmentTree.update(5, 2);
+        System.out.println(segmentTree.getMin(1, 7));
+
+//        int[] input = {3, 5, 1, 7, 4, 6};
+//        int[] input = {2, 5, 6, 9, 8};
+//        SegmentTree segmentTree = new SegmentTree(input);
+//        System.out.println(segmentTree.getMin(0, 4));
+//        segmentTree.update(2, 4);
+//        System.out.println(segmentTree.getMin(0, 5));
     }
 }
