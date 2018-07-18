@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * Created by adarsh.sharma on 12/12/17.
  */
-public class Test {
+public class TestJson {
     public static void main(String[] args) throws IOException {
         TestModel2 testModel2 = new TestModel2();
         testModel2.name = "name";

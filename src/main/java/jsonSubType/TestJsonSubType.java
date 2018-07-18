@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by adarsh.sharma on 03/11/17.
  */
-public class Test {
+public class TestJsonSubType {
     public static void main(String[] args) {
 
         ObjectMapper objectMapper = new ObjectMapper();
