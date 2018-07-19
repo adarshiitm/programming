@@ -87,7 +87,7 @@ public class MaxRecInBinaryMatrix {
     }
 
     public int maxHistogram(int input[]) {
-        Deque<Integer> stack = new LinkedList<Integer>();
+        Deque<Integer> stack = new LinkedList<>();
         int maxArea = 0;
         int i;
         for (i = 0; i < input.length; ) {
