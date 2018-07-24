@@ -3,6 +3,7 @@ package practice.algo.trees;
 /**
  * Created by adarsh.sharma on 13/06/18.
  */
+//Created BIT of a given array and gives functionality to get the sum of first k elements
 public class BinaryIndexedTree {
     int[] bit_arr;
 
@@ -13,6 +14,7 @@ public class BinaryIndexedTree {
         }
     }
 
+    //adds val to idx th element
     void add(int idx, int val) {
         while (idx < bit_arr.length) {
             bit_arr[idx] += val;
@@ -20,6 +22,7 @@ public class BinaryIndexedTree {
         }
     }
 
+    //Computes sum of first idx elements
     int sum(int idx) {
         int result = 0;
 

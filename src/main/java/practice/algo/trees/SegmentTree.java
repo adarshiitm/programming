@@ -20,6 +20,7 @@ public class SegmentTree {
         }
     }
 
+    //returns minimum element in range [left, right)
     int getMin(int left, int right) {
         int min = Integer.MAX_VALUE;
         left = left + n;
@@ -41,6 +42,7 @@ public class SegmentTree {
         return min;
     }
 
+    //updates pos with new value val
     void update(int pos, int val) {
         segArray[pos + n] = val;
         int p = (pos + n) / 2;
