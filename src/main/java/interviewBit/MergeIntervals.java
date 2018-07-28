@@ -1,6 +1,8 @@
 package interviewBit;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by adarsh.sharma on 03/07/18.
@@ -70,6 +72,8 @@ public class MergeIntervals {
         if (found) {
             result.add(new Interval(newStart, newEnd));
         }
+
+        Collections.sort(intervals, Comparator.comparingInt(o -> o.start));
 
         return result;
     }
