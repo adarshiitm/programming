@@ -9,11 +9,11 @@ import java.util.Arrays;
 public class Permutations {
     public ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> A) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
-        if(A==null) {
+        if (A == null) {
             return null;
-        } else if(A.size()==0) {
+        } else if (A.size() == 0) {
             return res;
-        } else if(A.size()==1) {
+        } else if (A.size() == 1) {
             res.add(A);
             return res;
         }
@@ -25,21 +25,21 @@ public class Permutations {
 
     private void permute(int start, ArrayList<Integer> A,
                          ArrayList<ArrayList<Integer>> res) {
-        if(start==A.size()-1) {
+        if (start == A.size() - 1) {
             ArrayList<Integer> p = new ArrayList<>();
             p.addAll(A);
             res.add(p);
         }
 
-        for(int i=start;i<A.size();i++) {
+        for (int i = start; i < A.size(); i++) {
             swap(i, start, A);
-            permute(start+1, A, res);
+            permute(start + 1, A, res);
             swap(i, start, A);
         }
     }
 
     private void swap(int i, int j, ArrayList<Integer> A) {
-        if(i!=j) {
+        if (i != j) {
             int temp = A.get(j);
             A.set(j, A.get(i));
             A.set(i, temp);
@@ -48,7 +48,7 @@ public class Permutations {
 
     public static void main(String[] args) {
         ArrayList<Integer> A = new ArrayList<>();
-        A.addAll(Arrays.asList(1, 2,3));
+        A.addAll(Arrays.asList(1, 2, 3));
         System.out.println(new Permutations().permute(A));
     }
 }
