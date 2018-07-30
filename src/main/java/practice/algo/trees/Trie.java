@@ -47,11 +47,7 @@ public class Trie {
 
     public static void main(String[] args) {
         Trie trie = new Trie();
-        trie.add("abcd");
-        trie.add("hello");
-        trie.add("abe");
-        System.out.println(trie.isPresent("abcd"));
-        System.out.println(trie.isPresent("abc"));
-        System.out.println(trie.isPresent("ef"));
+        trie.add("ab");
+        System.out.println(trie.isPresent("a"));
     }
 }
