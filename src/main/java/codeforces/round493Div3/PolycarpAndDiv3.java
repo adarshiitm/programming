@@ -1,4 +1,4 @@
-package codeforces;
+package codeforces.round493Div3;
 
 import java.util.Scanner;
 

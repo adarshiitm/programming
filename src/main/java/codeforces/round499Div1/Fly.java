@@ -1,4 +1,4 @@
-package codeforces.Round499Div1;
+package codeforces.round499Div1;
 
 import java.util.Scanner;
 
