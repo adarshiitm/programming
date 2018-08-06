@@ -35,7 +35,7 @@ public class LIS {
         c.add(-1);
         for (int i = 1; i < A.size(); i++) {
             if (A.get(i) < A.get(tailTable.get(0))) {
-                // new smallest value
+                // new biggest value
                 tailTable.set(0, i);
                 c.add(-1);
             } else if (A.get(i) > A.get(tailTable.get(tailTable.size() - 1))) {
