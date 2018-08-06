@@ -13,7 +13,7 @@ public class LIS {
         return lis(input).size();
     }
 
-    static int CeilIndex(List<Integer> A, List<Integer> T, int l, int r, int key) {
+    static int ceilIndex(List<Integer> A, List<Integer> T, int l, int r, int key) {
         while (r - l > 1) {
             int m = l + (r - l) / 2;
             if (A.get(T.get(m)) >= key)
@@ -45,7 +45,7 @@ public class LIS {
             } else {
                 // A[i] wants to be current end candidate of an existing
                 // subsequence. It will replace ceil value in tailTable
-                int k = CeilIndex(A, tailTable, -1, tailTable.size(), A.get(i));
+                int k = ceilIndex(A, tailTable, -1, tailTable.size(), A.get(i));
                 tailTable.set(k, i);
 //                c.add(c.get(tailTable.get(k-1)));
             }
