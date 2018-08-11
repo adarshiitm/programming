@@ -5,37 +5,30 @@ package interviewBit;
  */
 public class AddBinaryStrings {
     public String addBinary(String A, String B) {
-        int c = 0;
-        int i=A.length()-1;
-        int j=B.length()-1;
-        String res = "";
-
-        while(i>=0 || j>=0) {
-            int s = c;
-            if(i>=0) {
-                int a = A.charAt(i) - '0';
-                s+=a;
+        int i = A.length() - 1;
+        int j = B.length() - 1;
+        StringBuilder res = new StringBuilder();
+        int s = 0;
+        int base = 2;
+        while (i >= 0 || j >= 0) {
+            if (i >= 0) {
+                s += A.charAt(i) - '0';
             }
-            if(j>=0) {
-                int b = B.charAt(j) - '0';
-                s+=b;
+            if (j >= 0) {
+                s += B.charAt(j) - '0';
             }
-            if(s%2==0) {
-                res = "0"+res;
-            } else {
-                res = "1"+res;
-            }
-            c = (s>=2)?1:0;
+            res.append(s % base);
+            s = s / base;
             i--;
             j--;
         }
 
-        if(c>0) {
-            res = "1"+res;
+        if (s > 0) {
+            res.append(s);
         }
         //   1010110111001101101000
         // 1000011011000000111100110
-        return res;
+        return res.reverse().toString();
     }
 
     public static void main(String[] args) {
