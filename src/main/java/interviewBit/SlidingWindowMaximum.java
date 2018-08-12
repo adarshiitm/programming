@@ -114,7 +114,8 @@ public class SlidingWindowMaximum {
     }
 
     public static void main(String[] args) {
-        List<Integer> a = Arrays.asList(648, 614, 490, 138, 657, 544, 745, 582, 738, 229, 775);
-        System.out.println(new SlidingWindowMaximum().slidingMaximum(a, 9));
+//        List<Integer> a = Arrays.asList(648, 614, 490, 138, 657, 544, 745, 582, 738, 229, 775);
+        List<Integer> a = Arrays.asList(1,3,-1,-3,5,3,6,7);
+        System.out.println(new SlidingWindowMaximum().slidingMaximum(a, 3));
     }
 }

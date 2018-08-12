@@ -12,8 +12,8 @@ public class LargestRectangleInHistogram84 {
         int maxArea = 0;
         int i;
         for (i = 0; i < input.length; ) {
-            if (stack.isEmpty() || input[stack.peekFirst()] <= input[i]) {
-                stack.addFirst(i++);
+            if (stack.isEmpty() || input[stack.peekLast()] <= input[i]) {
+                stack.addLast(i++);
             } else {
                 maxArea = getMaxArea(input, stack, maxArea, i);
             }
@@ -26,7 +26,7 @@ public class LargestRectangleInHistogram84 {
 
     private int getMaxArea(int[] input, Deque<Integer> stack, int maxArea, int i) {
         int area;
-        int top = stack.pollFirst();
+        int top = stack.pollLast();
         //if stack is empty means everything till i has to be
         //greater or equal to input[top] so get area by
         //input[top] * i;
@@ -37,7 +37,7 @@ public class LargestRectangleInHistogram84 {
         //has to be greater or equal to input[top]
         //so area = input[top]*(i - stack.peek() - 1);
         else {
-            area = input[top] * (i - stack.peekFirst() - 1);
+            area = input[top] * (i - stack.peekLast() - 1);
         }
         if (area > maxArea) {
             maxArea = area;
