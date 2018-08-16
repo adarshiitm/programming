@@ -6,6 +6,7 @@ import java.util.Arrays;
 /**
  * Created by adarsh.sharma on 20/07/18.
  */
+//Without Duplicates
 public class Permutations {
     public ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> A) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
