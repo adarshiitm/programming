@@ -17,10 +17,8 @@ public class RemoveDuplicates {
         }
 
         int len = 1;
-        int last = a.get(0);
         for(int i=1;i<a.size();i++) {
-            if(a.get(i) != last) {
-                last = a.get(i);
+            if(!a.get(i).equals(a.get(len-1))) {
                 a.set(len, a.get(i));
                 len++;
             }
@@ -37,5 +35,6 @@ public class RemoveDuplicates {
         ArrayList<Integer> a = new ArrayList<>();
         a.addAll(Arrays.asList(0, 0, 1, 1, 2, 2, 3, 3));
         System.out.println(new RemoveDuplicates().removeDuplicates(a));
+        System.out.println(a);
     }
 }

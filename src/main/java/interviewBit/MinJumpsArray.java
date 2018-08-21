@@ -16,14 +16,11 @@ public class MinJumpsArray {
             return 0;
 
         int count = A.get(0);
-        int n;
+        int n = A.size();
         int max = 0;
         int steps = 0;
 
-        n = A.size();
-
         for (int i = 1; i < n; i++) {
-
             count--;
             max--;
             max = Math.max(max, A.get(i));
@@ -33,8 +30,9 @@ public class MinJumpsArray {
             }
 
             if (count == 0) {
-                if (max < 0)
+                if (max < 0) {
                     return -1;
+                }
 
                 count = max;
                 max = 0;
