@@ -62,7 +62,8 @@ public class LIS {
     }
 
     public static void main(String[] args) {
-        List<Integer> input = Arrays.asList(0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15);
+//        List<Integer> input = Arrays.asList(0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15);
+        List<Integer> input = Arrays.asList(1, 6, 2, 2, 4);
         System.out.println(lis(input));
         System.out.println(lisLength(input));
     }
