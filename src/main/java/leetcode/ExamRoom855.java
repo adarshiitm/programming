@@ -1,119 +1,135 @@
 package leetcode;
 
-import java.util.Iterator;
-import java.util.PriorityQueue;
+import java.util.Collections;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  * Created by adarsh.sharma on 18/06/18.
  */
 class ExamRoom855 {
-    PriorityQueue<PQ> pq;
+
     int N;
+    TreeSet<Integer> occupiedLocations;
+    TreeMap<Integer, TreeSet<Integer>> distanceLocationMap;
 
     public ExamRoom855(int N) {
         this.N = N;
-        pq = new PriorityQueue<>(N);
+        this.occupiedLocations = new TreeSet<>();
+        this.distanceLocationMap = new TreeMap<>(Collections.reverseOrder());
+        this.distanceLocationMap.computeIfAbsent(N - 1, k -> new TreeSet<>()).add(0);
     }
 
     public int seat() {
-        if (pq.size() == 0) {
-            pq.add(new PQ(0, N - 1, true, false));
-            return 0;
+        TreeSet<Integer> treeSet = distanceLocationMap.get(distanceLocationMap.firstKey());
+        Integer location = treeSet.first();
+        treeSet.remove(location);
+        if (treeSet.size() == 0) {
+            distanceLocationMap.remove(distanceLocationMap.firstKey());
         }
+        occupiedLocations.add(location);
+        Integer floorKey = occupiedLocations.lower(location);
+        Integer ceilingKey = occupiedLocations.higher(location);
 
-        PQ remove = pq.remove();
-
-        if (remove.e && remove.s) {
-            int diff = remove.end - remove.start;
-            int cur = diff / 2 + remove.start;
-            pq.add(new PQ(remove.start, cur, true, true));
-            pq.add(new PQ(cur, remove.end, true, true));
-            return cur;
-        } else if (remove.s) {
-            remove.e = true;
-            pq.add(remove);
-            return remove.end;
+        if (floorKey == null) {
+            int dist = location;
+            if (dist > 0) {
+                distanceLocationMap.computeIfAbsent(dist, k -> new TreeSet<>()).add(0);
+            }
         } else {
-            remove.s = true;
-            pq.add(remove);
-            return remove.start;
+            int dist = (location - floorKey) / 2;
+            if (dist > 0) {
+                distanceLocationMap.computeIfAbsent(dist, k -> new TreeSet<>()).add(floorKey + dist);
+            }
         }
+
+        if (ceilingKey == null) {
+            int dist = N - 1 - location;
+            if (dist > 0) {
+                distanceLocationMap.computeIfAbsent(dist, k -> new TreeSet<>()).add(N - 1);
+            }
+        } else {
+            int dist = (ceilingKey - location) / 2;
+            if (dist > 0) {
+                distanceLocationMap.computeIfAbsent(dist, k -> new TreeSet<>()).add(location + dist);
+            }
+        }
+
+        return location;
     }
 
     public void leave(int p) {
-        Iterator<PQ> iterator = pq.iterator();
-        PQ first = null;
-        PQ second = null;
+        Integer floorKey = occupiedLocations.lower(p);
+        Integer ceilingKey = occupiedLocations.higher(p);
 
-        while ((first == null || second == null) && iterator.hasNext()) {
-            PQ next = iterator.next();
-            if (next.end == p) {
-                first = next;
-            } else if (next.start == p) {
-                second = next;
+        if (floorKey == null) {
+            int dist = p;
+            if (dist > 0) {
+                distanceLocationMap.get(dist).remove(0);
+                if (distanceLocationMap.get(dist).size() == 0) {
+                    distanceLocationMap.remove(dist);
+                }
+            }
+        } else {
+            int dist = (p - floorKey) / 2;
+            if (dist > 0) {
+                distanceLocationMap.get(dist).remove(floorKey + dist);
+                if (distanceLocationMap.get(dist).size() == 0) {
+                    distanceLocationMap.remove(p);
+                }
             }
         }
 
-        if (first != null && second != null) {
-            pq.remove(first);
-            pq.remove(second);
-            pq.add(new PQ(first.start, second.end, first.s, second.e));
-        } else if (first != null) {
-            pq.remove(first);
-            first.e = false;
-            pq.add(first);
-        } else if (second != null) {
-            pq.remove(second);
-            second.s = false;
-            pq.add(second);
+        if (ceilingKey == null) {
+            int dist = N - 1 - p;
+            if (dist > 0) {
+                distanceLocationMap.get(dist).remove(N - 1);
+                if (distanceLocationMap.get(dist).size() == 0) {
+                    distanceLocationMap.remove(p);
+                }
+            }
+        } else {
+            int dist = (ceilingKey - p) / 2;
+            if (dist > 0) {
+                distanceLocationMap.get(dist).remove(p + dist);
+                if (distanceLocationMap.get(dist).size() == 0) {
+                    distanceLocationMap.remove(dist);
+                }
+            }
         }
+
+        if (floorKey == null && ceilingKey == null) {
+            distanceLocationMap.computeIfAbsent(N - 1, k -> new TreeSet<>()).add(0);
+        } else if (floorKey == null) {
+            distanceLocationMap.computeIfAbsent(ceilingKey, k -> new TreeSet<>()).add(0);
+        } else if (ceilingKey == null) {
+            distanceLocationMap.computeIfAbsent(N - 1 - floorKey, k -> new TreeSet<>()).add(N - 1);
+        } else {
+            int dist = (ceilingKey - floorKey) / 2;
+            if (dist > 0) {
+                distanceLocationMap.computeIfAbsent(dist, k -> new TreeSet<>()).add(floorKey + dist);
+            }
+        }
+
+        occupiedLocations.remove(p);
     }
 
-    class PQ implements Comparable<PQ> {
-        int start;
-        int end;
-        boolean s;
-        boolean e;
-
-        public PQ(int start, int end, boolean s, boolean e) {
-            this.start = start;
-            this.end = end;
-            this.s = s;
-            this.e = e;
-        }
-
-        @Override
-        public int compareTo(PQ other) {
-            int left;
-            if (other.s && other.e) {
-                left = (other.end + other.start) / 2;
-                left = Math.min(left - other.start, other.end - left);
-            } else {
-                left = other.end - other.start;
-            }
-
-            int right;
-            if (this.s && this.e) {
-                right = (this.end + this.start) / 2;
-                right = Math.min(right - this.start, this.end - right);
-            } else {
-                right = this.end - this.start;
-            }
-            int diff = left - right;
-            if (diff == 0) {
-                return this.start - other.start;
-            }
-
-            return diff;
-        }
-    }
 
     public static void main(String[] args) {
-        ExamRoom855 e = new ExamRoom855(10);
+        ExamRoom855 e = new ExamRoom855(9);
         System.out.println(e.seat());
         System.out.println(e.seat());
-        e.leave(0);
-        e.leave(9);
+        System.out.println(e.seat());
+        System.out.println(e.seat());
+        e.leave(4);
+
+        System.out.println(e.seat());
+        System.out.println(e.seat());
+        System.out.println(e.seat());
+        System.out.println(e.seat());
+        System.out.println(e.seat());
+        System.out.println(e.seat());
+        e.leave(3);
         System.out.println(e.seat());
     }
 }
