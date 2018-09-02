@@ -14,7 +14,7 @@ public class CountSmaller {
             this.sums = new int[n + 1];
         }
 
-        public void update(int i, int val) {
+        public void update(int i) {
             while (i < sums.length) {
                 sums[i]++;
                 i += (i & -i);
@@ -44,7 +44,7 @@ public class CountSmaller {
 
         for (int i = nums.length - 1; i >= 0; i--) {
             r[i] = bit.sum(mp.get(nums[i]));
-            bit.update(mp.get(nums[i]) + 1, 1);
+            bit.update(mp.get(nums[i]) + 1);
         }
 
         return r;

@@ -45,13 +45,44 @@ public class LargestRectangleInHistogram84 {
         return maxArea;
     }
 
+//    public int largestRectangleArea(int[] heights) {
+//        int maxArea = 0;
+//        Stack<Integer> stack = new Stack<>();
+//        int i=0;
+//        while(i<heights.length) {
+//            if(stack.isEmpty() || heights[stack.peek()] <= heights[i]) {
+//                stack.push(i++);
+//            } else {
+//                maxArea = getMaxArea(heights, stack, maxArea, i);
+//            }
+//        }
+//
+//        while(!stack.isEmpty()) {
+//            maxArea = getMaxArea(heights, stack, maxArea, i);
+//        }
+//
+//        return maxArea;
+//    }
+//
+//    private int getMaxArea(int[] heights, Stack<Integer> stack, int maxArea, int i) {
+//        int area = 0;
+//        int top = stack.pop();
+//
+//        if(stack.isEmpty()) {
+//            area = heights[top] * i;
+//        } else {
+//            area = heights[top] * (i - stack.peek() - 1);
+//        }
+//
+//        return Math.max(area, maxArea);
+//    }
+
     public static void main(String args[]) {
         LargestRectangleInHistogram84 mh = new LargestRectangleInHistogram84();
 //        int input[] = {2, 2, 2, 6, 1, 5, 4, 2, 2, 2, 2};
-        int input[] = {1, 2, 3, 1};
+        int input[] = {2,1,5,6,2,3};
         int maxArea = mh.maxHistogram(input);
         System.out.println(maxArea);
-        assert maxArea == 12;
     }
 
 }
