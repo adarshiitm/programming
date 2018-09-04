@@ -3,6 +3,7 @@ package interviewBit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by adarsh.sharma on 20/07/18.
@@ -34,7 +35,7 @@ public class FourSum {
                     } else if (sum < target) {
                         k++;
                     } else if (sum == target) {
-                        ArrayList<Integer> temp = new ArrayList<Integer>();
+                        ArrayList<Integer> temp = new ArrayList<>();
                         temp.add(num[i]);
                         temp.add(num[j]);
                         temp.add(num[k]);
@@ -57,52 +58,53 @@ public class FourSum {
         return result;
     }
 
-//    public ArrayList<ArrayList<Integer>> fourSum(ArrayList<Integer> A, int target) {
-//        Collections.sort(A);
-//        Integer[] num = new Integer[A.size()];
-//        num = A.toArray(num);
-//        HashSet<ArrayList<Integer>> hashSet = new HashSet<ArrayList<Integer>>();
-//        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-//
-//        for (int i = 0; i < num.length; i++) {
-//            for (int j = i + 1; j < num.length; j++) {
-//                int k = j + 1;
-//                int l = num.length - 1;
-//
-//                while (k < l) {
-//                    int sum = num[i] + num[j] + num[k] + num[l];
-//
-//                    if (sum > target) {
-//                        l--;
-//                    } else if (sum < target) {
-//                        k++;
-//                    } else if (sum == target) {
-//                        ArrayList<Integer> temp = new ArrayList<Integer>();
-//                        temp.add(num[i]);
-//                        temp.add(num[j]);
-//                        temp.add(num[k]);
-//                        temp.add(num[l]);
-//
-//                        if (!hashSet.contains(temp)) {
-//                            hashSet.add(temp);
-//                            result.add(temp);
-//                        }
-//
-//                        k++;
-//                        l--;
-//                    }
-//                }
-//            }
-//        }
-//
-//        return result;
-//    }
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> r = new ArrayList<>(Collections.nCopies(4, 0));
+        int iPrev = -1;
+        for (int i = 0; i <= n - 4; i++) {
+            if (iPrev == -1 || nums[i] != nums[iPrev]) {
+                iPrev = i;
+                int jPrev = -1;
+                r.set(0, nums[i]);
+                for (int j = i + 1; j <= n - 3; j++) {
+                    if (jPrev == -1 || nums[j] != nums[jPrev]) {
+                        jPrev = j;
+                        r.set(1, nums[j]);
+                        int s = target - nums[i] - nums[j];
+                        int left = j + 1;
+                        int right = n - 1;
+                        while (left < right) {
+                            if (nums[left] + nums[right] == s) {
+                                r.set(2, nums[left++]);
+                                r.set(3, nums[right--]);
+                                result.add(new ArrayList<>(r));
+                                while (left < right && nums[left] == nums[left - 1]) {
+                                    left++;
+                                }
+                                while (left < right && nums[left] == nums[left - 1]) {
+                                    right--;
+                                }
+                            } else if (nums[left] + nums[right] < s) {
+                                left++;
+                            } else {
+                                right--;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
 
     public static void main(String[] args) {
         ArrayList<Integer> A = new ArrayList<>();
-//        A.addAll(Arrays.asList(9, -8, -10, -7, 7, -8, 2, -7, 4, 7, 0, -3, -4, -5, -1, -4, 5, 8, 1, 9, -2, 5, 10, -5, -7, -1, -6, 4, 1, -5, 3, 8, -4, -10,
-//                -9, -3, 10, 0, 7, 9, -8, 10, -9, 7, 8, 0, 6, -6, -7, 6, -4, 2, 0, 10, 1, -2, 5, -2));
-        A.addAll(Arrays.asList(-1, -1, -1, -1, 0, 0, 0, 0, 1, 1, 1, 1));
-        System.out.println(new FourSum().fourSum(A, 0));
+        A.addAll(Arrays.asList(-1,-5,-5,-3,2,5,0,4));
+        System.out.println(new FourSum().fourSum(A, -7));
+        System.out.println(new FourSum().fourSum(new int[]{-1, -5, -5, -3, 2, 5, 0, 4}, -7));
     }
 }
