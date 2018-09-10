@@ -101,6 +101,10 @@ public class MyLinkedList<E> {
         return f.item;
     }
 
+    public Node<E> getFirstNode() {
+        return first;
+    }
+
     public E getLast() {
         final Node<E> l = last;
         if (l == null) {

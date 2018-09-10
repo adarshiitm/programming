@@ -18,9 +18,6 @@ public class MyConnectionPool implements ConnectionPool {
         return null;
     }
 
-    public void returnConnection(Connection connection) {
-    }
-
 //    public static void main(String[] args) {
 //        MyConnectionPool connectionPool = new MyConnectionPool(new ArrayList<>());
 //        Connection con = connectionPool.getConnection();
