@@ -52,7 +52,7 @@ public class MergeIntervals {
         int end  = intervals.get(0).end;
 
         for(int i=1;i<intervals.size();i++) {
-            if(intervals.get(i).start < end) {
+            if(intervals.get(i).start <= end) {
                 end = Math.max(end, intervals.get(i).end);
             } else {
                 result.add(new Interval(start, end));
@@ -65,60 +65,6 @@ public class MergeIntervals {
 
         return result;
     }
-
-//    public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
-//        ArrayList<Interval> result = new ArrayList<>();
-//        boolean found = false;
-//        boolean afterLast = false;
-//        int newStart = Integer.MAX_VALUE;
-//        int newEnd = Integer.MIN_VALUE;
-//        if (intervals.size() == 0) {
-//            result.add(newInterval);
-//            return result;
-//        }
-//        for (int i = 0; i < intervals.size(); i++) {
-//            Interval interval = intervals.get(i);
-//            if (i == 0 && newInterval.end < interval.start) {
-//                result.add(newInterval);
-//                result.addAll(intervals);
-//                return result;
-//            }
-//            if (nonOverlapping(interval, newInterval)) {
-//                if (afterLast && newInterval.end < interval.start) {
-//                    result.add(newInterval);
-//                    afterLast = false;
-//                }
-//                if (interval.end < newInterval.start) {
-//                    afterLast = true;
-//                }
-//
-//                if (found) {
-//                    result.add(new Interval(newStart, newEnd));
-//                    found = false;
-//                }
-//                result.add(interval);
-//            } else {
-//                afterLast = false;
-//                newStart = Math.min(newStart, Math.min(interval.start, newInterval.start));
-//                newEnd = Math.max(newEnd, Math.max(interval.end, newInterval.end));
-//                found = true;
-//            }
-//            if (i == intervals.size() - 1 && newInterval.start > interval.end) {
-//                result.add(newInterval);
-//            }
-//        }
-//        if (found) {
-//            result.add(new Interval(newStart, newEnd));
-//        }
-//
-//        Collections.sort(intervals, Comparator.comparingInt(o -> o.start));
-//
-//        return result;
-//    }
-
-//    private boolean nonOverlapping(Interval first, Interval second) {
-//        return first.end < second.start || first.start > second.end;
-//    }
 
     public static void main(String[] args) {
         ArrayList<Interval> input = new ArrayList<>();

@@ -9,18 +9,18 @@ import java.util.Arrays;
  */
 public class RedundantConnectionII {
     public int[] findRedundantDirectedConnection(int[][] edges) {
-        DisjointSet ds = new DisjointSet();
-        for (int i = 0; i < edges.length; i++) {
-            ds.makeSet(i + 1);
-        }
+        DisjointSet ds = new DisjointSet(edges.length);
+//        for (int i = 0; i < edges.length; i++) {
+//            ds.makeSet(i + 1);
+//        }
 
         for (int[] edge : edges) {
-            int p1 = ds.findSet(edge[0]);
-            int p2 = ds.findSet(edge[1]);
+            int p1 = ds.findSet(edge[0]-1);
+            int p2 = ds.findSet(edge[1]-1);
             if (p1 == p2) {
                 return edge;
             }
-            ds.union(edge[0], edge[1]);
+            ds.union(edge[0]-1, edge[1]-1);
         }
 
         throw new IllegalArgumentException();
