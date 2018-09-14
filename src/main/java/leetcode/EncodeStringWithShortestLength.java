@@ -18,10 +18,16 @@ public class EncodeStringWithShortestLength {
                 } else {
                     dp[i][j] = substr;
                     // Loop for trying all results that we get after dividing the strings into 2 and combine the   results of 2 substrings
+                    int min = -1;
+                    int len = substr.length();
                     for (int k = i; k < j; k++) {
-                        if ((dp[i][k] + dp[k + 1][j]).length() < dp[i][j].length()) {
-                            dp[i][j] = dp[i][k] + dp[k + 1][j];
+                        if (dp[i][k].length() + dp[k + 1][j].length() < len) {
+                            min = k;
+                            len = dp[i][k].length() + dp[k + 1][j].length();
                         }
+                    }
+                    if(min!=-1) {
+                        dp[i][j] = dp[i][min] + dp[min + 1][j];
                     }
 
                     // Loop for checking if string can itself found some pattern in it which could be repeated.
