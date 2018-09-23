@@ -71,7 +71,7 @@ public class MaxHeap {
     public static void main(String[] args) {
         Integer[] a = {5, 2, 7, 2, 4, 9, 3};
         MaxHeap maxHeap = new MaxHeap(a);
-        maxHeap.sort();
+//        maxHeap.sort();
         System.out.println(Arrays.asList(maxHeap.arr));
 
     }

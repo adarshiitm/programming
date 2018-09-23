@@ -63,5 +63,6 @@ public class KMP {
         String s = "ABABDABACDABABCABAB";
         String p = "ABABCABAB";
         System.out.println(StringUtils.join(new KMP().getMatches(s, p), ','));
+
     }
 }

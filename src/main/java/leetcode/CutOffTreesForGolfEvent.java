@@ -47,11 +47,17 @@ public class CutOffTreesForGolfEvent {
                     int nr = r + dr[di];
                     int nc = c + dc[di];
                     boolean closer;
-                    if (di <= 1) closer = di == 0 ? r > tr : r < tr;
-                    else closer = di == 2 ? c > tc : c < tc;
+                    if (di <= 1) {
+                        closer = di == 0 ? r > tr : r < tr;
+                    } else {
+                        closer = di == 2 ? c > tc : c < tc;
+                    }
                     if (0 <= nr && nr < R && 0 <= nc && nc < C && forest.get(nr).get(nc) > 0) {
-                        if (closer) deque.offerFirst(new int[]{detours, nr, nc});
-                        else deque.offerLast(new int[]{detours+1, nr, nc});
+                        if (closer) {
+                            deque.offerFirst(new int[]{detours, nr, nc});
+                        } else {
+                            deque.offerLast(new int[]{detours+1, nr, nc});
+                        }
                     }
                 }
             }
